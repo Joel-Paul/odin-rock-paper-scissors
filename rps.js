@@ -11,44 +11,44 @@ const ROUNDS = 5;
 game();
 
 function game() {
-    for (let i = 0; i < ROUNDS; i++) {
-        let playerSelection = prompt("Choose rock, paper, or scissors:");
-        let computerSelection = getComputerChoice();
-        
-        let output = playRound(playerSelection, computerSelection);
-        alert(output);
-    }
+  for (let i = 0; i < ROUNDS; i++) {
+    let playerSelection = prompt("Choose rock, paper, or scissors:");
+    let computerSelection = getComputerChoice();
+    
+    let output = playRound(playerSelection, computerSelection);
+    alert(output);
+  }
 }
 
 function playRound(playerSelection, computerSelection) {
-    playerSelection = playerSelection.toUpperCase();
-    computerSelection = computerSelection.toUpperCase();
+  playerSelection = playerSelection.toUpperCase();
+  computerSelection = computerSelection.toUpperCase();
 
-    if (!OPTIONS.includes(playerSelection) || !OPTIONS.includes(computerSelection)) {
-        return "Invalid Input";
-    }
+  if (!OPTIONS.includes(playerSelection) || !OPTIONS.includes(computerSelection)) {
+    return "Invalid Input";
+  }
 
-    const outcome = getOutcome(playerSelection, computerSelection);
-    if (outcome === WIN) {
-        return "You Win! " + playerSelection + " beats " + computerSelection;
-    }
-    if (outcome === LOSE) {
-        return "You Lose! " + computerSelection + " beats " + playerSelection;
-    }
+  const outcome = getOutcome(playerSelection, computerSelection);
+  if (outcome === WIN) {
+    return "You Win! " + playerSelection + " beats " + computerSelection;
+  }
+  if (outcome === LOSE) {
+    return "You Lose! " + computerSelection + " beats " + playerSelection;
+  }
 
-    return "You Drew! You both chose " + playerSelection;
+  return "You Drew! You both chose " + playerSelection;
 }
 
 function getOutcome(option1, option2) {
-    if (OPTIONS.indexOf(option1) === BEATS.indexOf(option2)) {
-        return WIN;
-    }
-    if (OPTIONS.indexOf(option2) === BEATS.indexOf(option1)) {
-        return LOSE;
-    }
-    return DRAW;
+  if (OPTIONS.indexOf(option1) === BEATS.indexOf(option2)) {
+    return WIN;
+  }
+  if (OPTIONS.indexOf(option2) === BEATS.indexOf(option1)) {
+    return LOSE;
+  }
+  return DRAW;
 }
 
 function getComputerChoice() {
-    return OPTIONS[Math.floor(Math.random() * OPTIONS.length)];
+  return OPTIONS[Math.floor(Math.random() * OPTIONS.length)];
 }
