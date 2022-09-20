@@ -2,8 +2,22 @@
 const OPTIONS = ["ROCK", "PAPER", "SCISSORS"];
 const BEATS = [OPTIONS[2], OPTIONS[0], OPTIONS[1]];
 
-function getComputerChoice() {
-    return OPTIONS[Math.floor(Math.random() * OPTIONS.length)];
+const WIN = 1;
+const LOSE = -1;
+const DRAW = 0;
+
+const ROUNDS = 5;
+
+game();
+
+function game() {
+    for (let i = 0; i < ROUNDS; i++) {
+        let playerSelection = prompt("Choose rock, paper, or scissors:");
+        let computerSelection = getComputerChoice();
+        
+        let output = playRound(playerSelection, computerSelection);
+        alert(output);
+    }
 }
 
 function playRound(playerSelection, computerSelection) {
@@ -15,10 +29,10 @@ function playRound(playerSelection, computerSelection) {
     }
 
     const outcome = getOutcome(playerSelection, computerSelection);
-    if (outcome === 1) {
+    if (outcome === WIN) {
         return "You Win! " + playerSelection + " beats " + computerSelection;
     }
-    if (outcome === -1) {
+    if (outcome === LOSE) {
         return "You Lose! " + computerSelection + " beats " + playerSelection;
     }
 
@@ -27,10 +41,14 @@ function playRound(playerSelection, computerSelection) {
 
 function getOutcome(option1, option2) {
     if (OPTIONS.indexOf(option1) === BEATS.indexOf(option2)) {
-        return 1;
+        return WIN;
     }
     if (OPTIONS.indexOf(option2) === BEATS.indexOf(option1)) {
-        return -1;
+        return LOSE;
     }
-    return 0;
+    return DRAW;
+}
+
+function getComputerChoice() {
+    return OPTIONS[Math.floor(Math.random() * OPTIONS.length)];
 }
