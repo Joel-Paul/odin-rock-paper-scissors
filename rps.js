@@ -36,7 +36,7 @@ function playRound(playerSelection, computerSelection) {
         return "You Lose! " + computerSelection + " beats " + playerSelection;
     }
 
-    return "You Drew!";
+    return "You Drew! You both chose " + playerSelection;
 }
 
 function getOutcome(option1, option2) {
