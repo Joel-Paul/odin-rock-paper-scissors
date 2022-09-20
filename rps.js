@@ -8,17 +8,13 @@ const DRAW = 0;
 
 const ROUNDS = 5;
 
-game();
-
-function game() {
-  for (let i = 0; i < ROUNDS; i++) {
-    let playerSelection = prompt("Choose rock, paper, or scissors:");
-    let computerSelection = getComputerChoice();
-    
-    let output = playRound(playerSelection, computerSelection);
-    alert(output);
-  }
-}
+const buttonOptions = document.querySelectorAll('.option');
+buttonOptions.forEach(option => {
+  option.addEventListener('click', function(e) {
+    const round = playRound(e.target.innerText, getComputerChoice());
+    alert(round);
+  });
+});
 
 function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection.toUpperCase();
