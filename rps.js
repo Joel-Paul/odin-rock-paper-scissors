@@ -6,7 +6,7 @@ const WIN = 1;
 const LOSE = -1;
 const DRAW = 0;
 
-const MAX_ROUNDS = 5;
+const MAX_WINS = 5;
 
 let round = 0;
 let wins = 0;
@@ -23,8 +23,14 @@ buttonOptions.forEach(option => {
   option.addEventListener('click', function(e) {
     outcomeDiv.innerText = playRound(e.target.innerText, getComputerChoice());
     updateText();
+    checkRoundEnded();
   });
 });
+
+function checkRoundEnded() {
+  if (wins < MAX_WINS) return;
+  buttonOptions.forEach(option => option.disabled = true);
+}
 
 function updateText() {
   roundDiv.innerText = "Round: " + round;
