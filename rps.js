@@ -11,22 +11,18 @@ function playRound(playerSelection, computerSelection) {
     computerSelection = computerSelection.toUpperCase();
 
     if (!OPTIONS.includes(playerSelection) || !OPTIONS.includes(computerSelection)) {
-        console.log("Invalid Input");
-        return false;
+        return "Invalid Input";
     }
 
     const outcome = getOutcome(playerSelection, computerSelection);
     if (outcome === 1) {
-        console.log("You Win! " + playerSelection + " beats " + computerSelection);
-        return true;
+        return "You Win! " + playerSelection + " beats " + computerSelection;
     }
     if (outcome === -1) {
-        console.log("You Lose! " + computerSelection + " beats " + playerSelection);
-        return true;
+        return "You Lose! " + computerSelection + " beats " + playerSelection;
     }
 
-    console.log("You Drew!");
-    return false;
+    return "You Drew!";
 }
 
 function getOutcome(option1, option2) {
