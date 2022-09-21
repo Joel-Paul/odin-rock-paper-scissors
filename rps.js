@@ -18,21 +18,31 @@ const winsDiv = document.querySelector('.wins');
 const lossesDiv = document.querySelector('.losses');
 const drawsDiv = document.querySelector('.draws');
 
-const buttonOptions = document.querySelectorAll('.option');
-buttonOptions.forEach(option => {
-  option.addEventListener('click', function(e) {
-    outcomeDiv.innerText = playRound(e.target.innerText, getComputerChoice());
-    updateText();
-    checkRoundEnded();
-  });
-});
+const winnerDiv = document.querySelector('.winner');
 
-function checkRoundEnded() {
-  if (wins < MAX_WINS) return;
-  buttonOptions.forEach(option => option.disabled = true);
+const buttonOptions = document.querySelectorAll('.option');
+buttonOptions.forEach(option => option.addEventListener('click', game));
+
+function game(e) {
+  const roundOutput = playRound(e.target.innerText, getComputerChoice());
+  updateText(roundOutput);
+  checkWinner();
 }
 
-function updateText() {
+function checkWinner() {
+  if (wins < MAX_WINS && losses < MAX_WINS) return;
+
+  buttonOptions.forEach(option => option.disabled = true);
+
+  if (wins > losses) {
+    winnerDiv.innerText = "You win!";
+  } else {
+    winnerDiv.innerText = "You lose!";
+  }
+}
+
+function updateText(roundOutput) {
+  outcomeDiv.innerText = roundOutput;
   roundDiv.innerText = "Round: " + round;
   winsDiv.innerText = "Wins: " + wins;
   lossesDiv.innerText = "Losses: " + losses;
